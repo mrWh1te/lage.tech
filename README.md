@@ -1,39 +1,10 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Starter for the official Gatsby blog and notes themes.
-</h1>
 
-Quickly get started using the Gatsby blog theme, and notes theme, together! This starter creates a new Gatsby site that is preconfigured to work with the [blog theme](https://www.npmjs.com/package/gatsby-theme-blog) and the [notes theme](https://www.npmjs.com/package/gatsby-theme-notes), in harmony.
+# lage.tech
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7bfa7630-5e99-4555-a3f7-b4647a5f119a/deploy-status)](https://app.netlify.com/sites/elastic-shannon-bdbb7b/deploys)
 
-## 🚀 Quick start
+GatsbyJS blog for programming/technology posts and notes.
 
-1.  **Create a Gatsby site.**
-
-    Use the Gatsby CLI to create a new site, specifying this theme starter.
-
-    ```shell
-    # create a new Gatsby site using this theme starter
-    gatsby new my-themed-site https://github.com/gatsbyjs/gatsby-starter-theme
-    ```
-
-2.  **Start developing.**
-
-    Navigate into your new site’s directory and start it up.
-
-    ```shell
-    cd my-themed-site/
-    gatsby develop
-    ```
-
-3.  **Open the code and start customizing!**
-
-    Your site is now running at `http://localhost:8000`!
-
-    To get started, check out the guide to [getting started with using multiple themes](https://gatsbyjs.com/docs/themes/using-a-gatsby-theme), or the [general themes docs](https://gatsbyjs.com/docs/themes).
+[Live](https://lage.tech)
 
 ## 🧐 What's inside?
 
