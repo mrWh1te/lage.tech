@@ -1,0 +1,66 @@
+---
+title: UI first Development with Storybook
+date: 2020-02-15
+---
+
+# Web Application Development
+
+Tech has grown a lot over recent years. Almost every industry has invested countless resources into adopting and building their own applications to stay relevant in our fast digital world.
+
+Web app development has evolved into a highly detailed, iterative process, that aims to build intuitive solutions for dynamic problems. Even with the strongest grasp of the problems' needs, it's almost impossible to visualize a robust, intuitive solution, in completion. It takes domain expertise from design, product, development, management, to build intuitive applications that works wonders for the users, but also for those working on it.
+
+Many app developments follow Behavior Driven Development (BDD). It breaks down a solution's idea into unique behaviors, like features or parts of features. Each behavior is assigned a user-story, or stories, summarizing the segment of work.
+
+As the behavior is developed, there is a review process, often leading to an iterative approach, in refining the behavior. It may look like this:
+
+--IMAGE--
+Business -> Product -> Design -> Develop -> Deploy -> Testing -> Review -> Iterate
+
+Business defines the focus of the problem, to its greatest impact. Product works with business in creating a simple solution. Design creates UX and UI mocks of the solution. Finally, developers bring it to life, and begin the iterative process, which repeats itself `n` times until approved.
+
+It's a thorough process that maximizes effort into building the greatest value of a solution. 
+
+~~However, the underlying business logic, including the data layer (such as the Application State), are complex important pieces near an application's foundation. They are contigent on the needs of the UI and UX. Therefore, s change to the UI, can result in a rewrite (or refactor) of the underlying smart logic.~~
+
+We can optimize this. We can skip the rewrite of smart logic, when iterating on UI.
+
+Instead of building the entire feature to test iteratively in a Staging environment, build first the feature's UI. Then the team can reiterate on the solutions's UX and UI, perfecting it, without rewriting any business or smart logic.
+
+This enables the team to iterate faster, while building better apps quicker.
+
+This is especially helpful, for new projects, early in development, when a team is still exploring UX and UI ideas. If you find yourself iterating on a feature, in its entirety, multiple times, you can cut down cost dramatically by building the UI first.
+
+# UI first Development
+
+There is a popular coding pattern, in the Angular community, of splitting web components into two: one smart and one UI components. The pattern has great benefits, and works perfectly with this development approach, of UI first.
+
+So like the name suggests, after you have the initial design and business requirements, build the UI first, by building only the UI components.
+
+But, how do you share these UI components with others who don't read or write code? You would have to build a demo app, with Modules, and mock smart components, and services to demonstrate these UI components. It's a signifcant amount of upkeep, to help development iterate faster.. that is until [Storybook](https://storybook.js.org/) made it to the scene in 2016.
+
+# Storybook
+
+Storybook makes it really easy to demonstrate, with interaction, your UI components with those shared.
+
+##### Storybook CLI -> add link to "getstorybook"
+It has an easy CLI, that with one command, can get a Storybook app running, in your app, with popular JavaScript frameworks like React, Vue, Angular and so forth. It handles the ground work for the app, so developers can focus on building stories for these components.
+
+So for each UI component, developers builds user stories, given the UX design and business requirements.
+
+This blog's open-source Enterprise example Angular app called [ngLibrary](https://github.com/mrWh1te/ngLibrary), has a [Storybook Demo](https://nglibrary-demo.netlify.com/storybook).
+
+In the [ngLibrary app](https://nglibrary-demo.netlify.com/), users can add books to their Basket, then go to the Checkout page, to reserve their books for later pick-up. In the Checkout page, is an UI component called `CheckoutSubmitButtonUiComponent`. 
+
+### Easy to interface Inputs/Outputs
+
+### Storybook plugins
+
+
+Speaking hypothetically, what if the design team or product team were unsure of the UI like the color of the button's font? Developers can use the helpful `knobs` plugin, to interface with an Angular's UI component's Inputs!
+
+Play with the [Checkout Submit Button example story](https://nglibrary-demo.netlify.com/storybook/?path=/story/checkout-submit-button--example). You can click the "button", to see the 
+
+
+### Wrap up
+
+
