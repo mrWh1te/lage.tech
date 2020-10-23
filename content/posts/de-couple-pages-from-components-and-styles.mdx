@@ -1,0 +1,174 @@
+---
+title: De-couple Pages from Components & Styles
+date: 2019-05-24
+---
+
+A popular programming technique in application development is to separate concerns. This tutorial focuses on separating parts of pages, aka views, from the page features. It empowers developers by keeping the User Experience (what's on & what happens in the web pages) flexible, and the pages more atomic.
+
+One way to do that is to have specific components for Pages like *View Components* that can set the Stage for other components to work. The View Components coding-pattern has benefits:
+
+1. Re-usable feature components (widgets) with different styles based on each view
+2. Easily add & remove feature components (widgets) from pages for a flexible User Experience
+3. More predictable code to ease development efforts
+
+# What are View Components?
+
+A *View Component* is a regular component that functions as a **stage** for other components to act. It's a dedicated space, a *view*, a portion of a web page (or entire), with HTML, styling (CSS/SCSS/etc), and other components.
+
+Think of a *theatre* and imagine a **stage** where dressed up Performers act with Props, in uniform direction, for an audience. Similarly, a *View Component* is a stage for actors (components) & props (HTML), dressed up (styled with CSS), to perform for the Audience (users). 
+
+# View Component Requirements
+
+In order for a component to be a *View Component*, it must:
+
+1. Not include any smart logic of its own
+  - If you need to dynamically render something, build another component(s) that does that by itself that can act on all Stages
+2. In the Template, use a container element, like `div`, with an unique CSS class name like `.home-view` to wrap all HTML and components to restrict the styling of this component to only what's in the Template, because:
+3. Use `ViewEncapsulation.None`
+  - This allows us to apply CSS styles to our entire app from this component (which we don't want to do), but it enables us to style the children components with a view specific style
+4. Use `ChangeDetectionStrategy.OnPush`
+  - Since we're following Requirement 1, this component doesn't need to be included in any kind of Dirty Checking, since we only use children components to render dynamic content, so we omit all View Components from triggered Change Detection cycles
+5. A distinguishable file-name, which includes a `view` suffix like `home-view.component.ts`
+6. View Components are to be only used as routed components in the Router and as other content templates such as a Dialog or drop-down
+
+> Side note: Requirement #2 is optional, but you must understand the effects of using `ViewEncapsulation.None` in order to style the children components
+
+By following these requirements, you'll unlock the benefits of using *View Components*. 
+
+# Let's take a peek
+
+[ngLibrary](https://github.com/mrWh1te/ngLibrary) uses the View Component coding-pattern. The Checkout page's routed component is [checkout-view.component.ts](https://github.com/mrWh1te/ngLibrary/blob/master/src/app/checkout/checkout-views/views/checkout/checkout-view.component.ts):
+```typescript
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from "@angular/core"
+
+@Component({
+  selector: 'checkout-view',
+  templateUrl: './checkout-view.component.html',
+  styleUrls: [
+    './checkout-view.component.scss',
+    './../../../../cart/cart-widgets/widgets/shopping-cart/ui/shopping-cart-checkout.scss'
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class CheckoutViewComponent {}
+```
+
+It's pretty empty, as it should be from following the requirements. What is unique about every *View Component*, is the template referenced in `templateUrl` (stage for components & HTML) and the styles referenced in `styleUrls` (the dressings of the Actors & Props).
+
+Let's take a look at its template, [checkout-view.component.html](https://github.com/mrWh1te/ngLibrary/blob/master/src/app/checkout/checkout-views/views/checkout/checkout-view.component.html):
+```html
+<!-- Checkout View -->
+<section class="checkout-view">
+  <article fxLayoutAlign="space-around" fxLayout.lt-sm="column">
+    <div>
+      <h2>Your Books for Checkout</h2>
+      <shopping-cart ui="checkout"></shopping-cart>
+    </div>
+    <div>
+      <h2>Fill in:</h2>
+      <checkout-user-form></checkout-user-form>
+    </div>
+  </article>
+  <article fxLayoutAlign="center">
+    <checkout-submit-button></checkout-submit-button>
+  </article>
+</section>
+```
+
+This is a **stage**. It's not referencing any internal functions, it's not referencing any internal data, it's just HTML (props) and components (actors).
+
+> Side note: There are two 3rd party directives `fxLayoutAlign` & `fxLayout.lt-sm` being used here to set the Layout of this View. They come from Angular's [Flex-Layout Module](https://github.com/angular/flex-layout). I recommend reading about it, but to highlight my favorite thing about it, it supports two-way bindings in its directives. That enables the Layout to change on events happening. So now you can build a mobile-responsive and *event-responsive* Layout with ease. Pretty cool 💯
+
+Finally, let's take a look at the CSS styling, to understand how the View dresses up children components (actors). Here is one of the stylesheets (with comments omitted) [shopping-cart-checkout.scss](https://github.com/mrWh1te/ngLibrary/blob/master/src/app/cart/cart-widgets/widgets/shopping-cart/ui/shopping-cart-checkout.scss):
+```scss
+@import '../../../../../../styles/colors';
+.checkout-view {
+  shopping-cart {
+    article {
+      background-color: $transparent;
+      border: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: .5rem;
+        .author {
+          margin-top: .25rem;
+        }
+        .close {
+          width: auto;
+          height: auto;
+          font-size: .8rem;
+          margin-left: 1rem;
+          margin-right: .25rem;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .row-number {
+          margin-left: .25rem;
+          margin-right: .25rem;
+        }
+      }
+    }
+  }
+}
+```
+
+As you can see here, we're directly referencing the `shopping-cart` component after encapsulating it in our `.checkout-view`. This lets us style the `shopping-cart` component for this stage, without affecting other `shopping-cart` components in other stages. Each stage, each View, can reuse these children components with their own styles, because we turned off View Encapsulation (Requirement #3)! But, then we take control by encapsulating our CSS with a specific container (Requirement #2).
+
+There is a caveat with this technique and styling deeply nested components from a View Component. In order for the View styling to work with deeply nested components, you must directly reference the deepest component that you want to style. A View Component's CSS won't be applied to a grandchild component if referenced through its parent component. For example, the following won't work:
+```scss
+.magazine-view {
+  magazine {
+    magazine-article {
+      magazine-article-title {
+        h2 {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+```
+
+We have a container div with the `.magazine-view` CSS class and we're trying to style a deeply nested component `magazine-article-title` that exists within `magazine-article` component, which exists in the View's child component, `magazine`. However, that above won't work. In order to style the title component, we must directly reference it through the container without going through its parent components:
+```scss
+.magazine-view {
+  magazine-article-title {
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+}
+```
+
+If you need additional flexibility with Styling or UI, try adding configuration via the `@Input` decorator to the View's children components so that the View can configure the children components for additional needs. A related example is ngLibrary's [Shopping Cart Component](https://github.com/mrWh1te/ngLibrary/blob/master/src/app/cart/cart-widgets/widgets/shopping-cart/smart/shopping-cart.component.ts) that has two templates to choose from through the `ui` property.
+
+# Children Components
+
+The *Shopping Cart Component* is, in this context, a child component of our *Checkout View*. As you can tell, it doesn't rely on any business logic or data from the View, since it works on its own. It's self-reliant, which makes it de-coupled from the View. Therefore, we can reuse the *Shopping Cart Component* in all of our Views without effort. This flexibilty enables greater component reuse and keeps the app's User Experience open to change.
+
+# Thoughts on Orchestrating CSS
+
+So to bring this tutorial to its conclusion without taking any of the many possible tangents on the other cool stuff we can do here, I'd like to explore one last related thing, *CSS methodologies*. There are various coding-patterns that you can choosen from to build reusable, modular CSS.
+
+In the context of this tutorial, one particular CSS methodology fits quite well, and it's really easy to adopt. It's called [BEM](http://getbem.com/).
+
+> Block. Element. Modifier.
+
+I recommend reading [BEM's introduction](http://getbem.com/introduction/) on what Blocks, Elements and Modifiers are. Once you do that, consider limiting children components to BEM's *Element* styles. Then, in your View Components, include BEM's *Blocks* & *Modifiers* for styling your children components uniquely.
+
+If you adopt this simple CSS methodology on top of this coding-pattern, you'll get scalable reusable CSS code too.
+
+# Conclusion
+
+Whether you use this or not, the base idea can be very helpful. Architect the application in a way so that the main components (widgets) can be re-used on any page, without any dependencies. This allows us to make changes to the whole application in terms of how it's organized, how it flows. Main features can now be used on any page, with different styles. Do you need to move that form from the home page to the Customer page, no problem. Do you need to reuse a component but with different fonts, easy, when you use View Components.
+
+View Components, as a coding-pattern, reduces efforts in maintaining and growing a web application's pages, and consequently one of the most important pieces of software, the User Experience. Therefore, for many projects, it's a pattern worth implementing. 

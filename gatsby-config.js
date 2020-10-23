@@ -14,5 +14,27 @@ module.exports = {
   siteMetadata: {
     title: `Lage.tech`,
     author: 'Michael Lage',
+    description: `Technology blog focusing on Software`,
+    // Used for resolving images in social cards
+    siteUrl: `https://www.lage.tech`,
+    // Used for social links in the root footer
+    social: [
+      {
+        name: `Twitter`,
+        url: `https://twitter.com/mpbl`,
+      },
+      {
+        name: `GitHub`,
+        url: `https://github.com/mrWh1te`,
+      },
+      {
+        name: `LinkedIn`,
+        url: `http://linkedin.com/in/michaellage`,
+      },
+      {
+        name: `Instagram`,
+        url: `https://instagram.com/lagmahol`,
+      },
+    ],
   },
 }

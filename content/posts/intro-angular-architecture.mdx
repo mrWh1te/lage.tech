@@ -1,0 +1,90 @@
+---
+title: Intro Angular Architecture
+date: 2019-04-15
+---
+
+# Introduction
+
+Hi 🙋‍♂️ 
+
+My name is Michael Lage, and I am the author & programmer behind the Angular Architecture tutorials here. 
+
+The tutorials for Angular are intended for Angular developers who are looking for techniques to build large scale, enterprise Single Page Applications with high code extensibilty and minimal Time to Interactive. I'll walk you through techniques that you can copy and paste into your application's architecture. These techniques keep the application's User Experience flexible and the code minimal, through atomic design. It creates highly performant apps, given its Reactive Architecture, to minimize the initial page load, subsequent page loads, and on a feature by feature basis. It utilizes the Redux pattern to make large scale, heavy data applications easier to manage.
+
+A bit about me; I've been building, deploying and managing complex web applications since I was a kid, 15 years and counting. I really enjoy tackling the complexities of large scale apps, while experimenting with novel concepts when I get the chance. I'm a programmer who loves beautiful code.
+
+Back in 2013, I changed my primary focus from Backend PHP development to Single Page Application development. I tried out Backbone, Ember, and Knockout but decided on Angular as my primary JavaScript framework. I have been building advanced SPA's and a few mobile apps, with some version of Angular ever since. I was the architect for an eCommerce Market Place, called Gunponent, but unfortunately it didn't make Launch. It was a robust Market Place where Users could create Stores to Sell & Ship accessories leveraging Stripe Connect, a [Mental Health Service](https://howyoufeel.in), an Online Ordering service for restaurants, and worked on Entreprise web apps for Traxo and FedEx.
+
+Over the years, I have grown fond of a few coding-patterns that proved reliable in building highly readible code with minimal TTI.
+
+But enough about me; in order to get us running faster in this series, I built an open-source Angular SPA called [ngLibrary](https://github.com/mrWh1te/ngLibrary) (here is the [Demo](https://nglibrary-demo.netlify.com/)) as the official reference SPA for these Angular Architecture tutorials. It follows all the coding-patterns taught in this series and it's setup like a real Production App with CI and CD. 
+
+ngLibrary is a pretend Online Gateway to check out books from your local library. On top of Angular, it uses these popular libraries: [NgRX](https://ngrx.io), [RxJS](https://github.com/ReactiveX/rxjs), [Flex-Layout](https://github.com/angular/flex-layout), [Angular Material](https://material.angular.io/), and [Angular CDK](https://material.angular.io/cdk/categories).
+
+# Complexity, Complexity, Complexity
+
+Single Page Applications are quite complex. In the late 90's, we had Web Pages like [this](https://www.spacejam.com/) (what a gem!). They were mainly HTML tables, some frames and, if you were lucky, some scrolling marquee. These days, with the rise of SPA's, web pages have evolved exponentially. 
+
+There's a lot of JavaScript, HTML semantics, powerful CSS, web components, and so forth, but all this additional stuff introduces new complexities for Web Developers to figure out. 
+
+Now, there is no perfect panacea for handling all the complexities of SPA development, but a solid foundation includes a few patterns to break down common complexities into bite-size pieces. There are many different patterns that handle various common complexities in SPA development, but no set of patterns are truly superior. 
+
+This series of Angular Architecture tutorials highlights particular coding-patterns, chosen for building and scaling large SPA's, including Entreprise, with *extensible code* and *minimum TTI*. 
+
+# Angular Architecture
+
+As of v8, Angular is a semi-opinionated TypeScript framework that comes with fantastic tooling. It has *Dependency Injection* for sharing Singletons (services) across components, a default configured rendering cycle that uses Dirty Checking, a Module system for encapsulating and sharing components & services, and much, much more. Core developers on the Angular Project make recommendations such as replacing the default Dirty Checking for the `onPush` Change Detection strategy (which will be covered in a tutorial) for optimizing the application's performance. 
+
+But, there isn't a de-facto way to:
+1. Orchestrate the Application's components
+2. Orchestrate the Application's state
+
+That's where this series comes in. It's going to show you one way to architect large-scale, flexible SPA's with a focus on Reactive Push based Architecture using the Redux pattern via NgRX and loosely coupled views, components (along with their inner-workings) while maintaining our principles.
+
+# Coding Principles
+
+There are many popular principles in coding great software. They can act as a central authority in making decisions. From selecting and replacing coding-patterns, to resolving disputes between team members on the best path forward when disputes arise, they can be essential pieces to fall back to, when times are unclear.
+
+These principles were chosen to make large scale, enterprise, long-term Single Page Application development smooth, fun and rewarding.
+
+1. Strong Code Separation
+    - Single Responsibility Principle (ie Atomic Design)
+    - Keep It Stupid Simple (KISS)
+2. Don't re-invent the wheel & don't build a space-ship if we're traveling by car
+    - Don't Repeat Yourself (DRY)
+        - Instances of repeating code, should be replaced with reusable generic solutions
+    - You Aren't Gonna Need It (YAGNI)
+3. Strong Code Readability
+    - Easy to read code is easier to maintain and extend then highly compressed "wizard" code
+    - Helps with onboarding new Team Members
+    - Following coding-patterns leads to predictable code, which takes less effort to maintain and extend
+4. Minimal TTI
+    - Minimize the Time it takes for the web page to be ready for the User to interact
+    - Optimize the User Experience
+5. Code Extensibility
+    - Make it easier to add/remove new & old features across web pages
+    - Keep pages & components de-coupled to maintain flexibility in the User Experience's design
+    - Keep things open to extending but closed for modification
+
+# Coding Patterns & Practices
+
+From those principles, to achieve minimal TTI & extensible code, we follow these coding-patterns:
+
+1. [De-couple Pages from Components & Styles](de-couple-pages-components-styles)
+2. Break down Feature Components (widgets) as 2-Layered components, 1 for handling the Business Logic, and 2 for the UI 
+3. Use the `onPush` change detection strategy on all components (made easy with #2)
+4. Follow Redux pattern with a Single Source of Truth for features that require cross-component interaction 
+5. Single purpose event-based Redux Actions & Side-Effects
+6. Composition over Inheritance for component architecture and services, to replace sharing functionality through Inheritance, with the Composition of other objects (ie Services) encapsulating various single themed responsibilities
+7. Use of CI with E2E, Unit and Integration Testing of all Major Business functions and UX flows
+8. Code-Splitting of Modules for Views/Routing, Widgets and Data
+9. Dedicated `/shared` folder for self-encapsulated re-usable Modules
+10. Using the `async` pipe instead of managing Subscriptions
+
+For each one of these patterns, a tutorial will be published on this website and linked here. I will aim to release a new tutorial at least once every 2-3 weeks!
+
+# ngLibrary
+
+Each one of these coding-patterns are found in ngLibrary. If you haven't checked it out yet, here is the [Demo](https://nglibrary-demo.netlify.com/). Don't forget to bookmark & star the source code on Github [right here](https://github.com/mrWh1te/ngLibrary)! I really appreciate it 🎇🙏😊
+
+Have fun!
