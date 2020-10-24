@@ -1,6 +1,6 @@
 ---
 title: UI first Development with Storybook
-date: 2020-02-15
+date: 2020-10-24
 ---
 
 # Web Application Development
@@ -28,11 +28,11 @@ The pattern has great benefits like optimizing web app performance, separating c
 
 The UI first Development approach optimizes the iterative process in the Develop stage, by delaying all the smart logic, both backend & frontend, until the UI portion of the feature is complete. Therefore, if during the iterative process, major changes were to happen, as new information is discovered, there is less code to rewrite. This is extremely beneficial for exploring novel concepts with experimental features.
 
-This all comes together with [Storybook](https://storybook.js.org/). You code the UI component, as usual, then using [Component Story Format](https://storybook.js.org/docs/react/api/csf), you display the UI component for the various stories of the feature. For each behavior, a story can exist, organized under each feature in your app's Storybook.
+This all comes together with [Storybook](https://storybook.js.org/). You code the UI component, as usual, then using [Component Story Format](https://storybook.js.org/docs/react/api/csf), you display the UI component in various stories. For each behavior, a story can exist, organized under each feature in your app's Storybook.
 
 # Storybook
 
-Storybook makes it really easy to demonstrate your UI components, with interactive knobs, actions, events, documentation and more. It has an easy CLI, that with one command, can get a Storybook app running, in addition to your app, for popular JavaScript frameworks like React, Vue, Angular and so forth. It handles all the work for the app, so developers can focus on building interactive stories for their UI components.
+[Storybook](https://storybook.js.org/) makes it really easy to demonstrate your UI components, with interactive knobs, actions, events, documentation and more. It has an easy CLI, that with one command, can get a Storybook app running, in addition to your app, for popular JavaScript frameworks like React, Vue, Angular and so forth. It handles all the work for the app, so developers can focus on building interactive stories for their UI components.
 
 My open-source Enterprise example Angular app called [ngLibrary](https://github.com/mrWh1te/ngLibrary) ([demo](https://nglibrary-demo.netlify.com/)), has an online [Storybook](https://nglibrary-demo.netlify.com/storybook) for displaying all its components with various states. There was no need to mock an API response, but instead use knobs to plug in data to the UI component to test how the component displays for each edge case.
 
@@ -45,6 +45,8 @@ Speaking hypothetically, what if the design team or product team were unsure of 
 Play with the [Checkout Submit Button example story](https://nglibrary-demo.netlify.com/storybook/?path=/story/checkout-submit-button--example). You can click the "button", to see the 
 
 
-### Wrap up
+# Extra
+
+I've recently gotten into the [NX CLI tool]() (and it's amazing!).
 
 
