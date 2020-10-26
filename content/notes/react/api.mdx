@@ -1,0 +1,23 @@
+# API
+
+Getting data into React components.
+
+## Local State
+
+```typescript
+import React, {useEffect, useState} from 'react';
+
+function App() {
+  const [state, setState] = useState<number | undefined>();
+
+  useEffect(() => {
+    fetch("url").then(res => res.json()).then(res => setState(res));
+  }, [])
+
+  if (!state) {
+    return <div>...loading</div>
+  }
+
+  return <div>count from the api is: {state}</div>
+}
+```
