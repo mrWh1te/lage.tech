@@ -1,0 +1,9 @@
+# Apollo Client
+
+## Union Types
+
+When using an union type with the [GraphQL Code Generator](https://graphql-code-generator.com/), it's possible to infer the type by including `__typename` in the query, then in the code running some kind of conditional expression (like an if statement or switch cases) to filter the event type via the `__typename` property. That will it will infer the type of the union.
+
+## Normalized Object Types
+
+When using a normalized object type that shares the primary key field with other objects (therefore its not unique by itself), you need to add a [Type Policy](https://www.apollographql.com/docs/react/caching/cache-configuration/#customizing-identifier-generation-by-type) to uniquely identify the data. Otherwise, the local cache will get overridden with new data, because the Apollo Client, will by default, treat `id` or `_id` as the primary key.
