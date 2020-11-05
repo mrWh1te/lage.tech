@@ -2,6 +2,26 @@
 
 ## Advanced types
 
+### Pick
+Create a new type based on another type except refine its properties to the ones picked.
+
+Applicable React example:
+```typescript
+// User Model
+interface User {
+  id: number,
+  first_name: string,
+  last_name: string,
+  phone: number,
+  address: string
+}
+
+// User component to display user's full name
+const UserFullName = ({first_name, last_name}: Pick<User, 'first_name'|'last_name'>) => (
+  <h4>{ first_name } { last_name }</h4>
+)
+```
+
 ### Record
 Create a hash-map type using values of an union type as keys with values set to subsequent generic.
 
