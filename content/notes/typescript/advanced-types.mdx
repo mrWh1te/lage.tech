@@ -1,0 +1,24 @@
+# TypeScript
+
+## Advanced types
+
+### Record
+Create a hash-map type from an union type
+
+Applicable React example:
+```TypeScript
+type Statuses = "failed" | "complete";
+
+const icons: Record<Statuses,{ iconType: IconTypes; iconColor: IconColors }> = {
+  failed: {
+    iconType: "warning",
+    iconColor: "red"
+  },
+  complete: {
+    iconType: "check",
+    iconColor: "green"
+  };
+
+const Status = ({status}) => <Icon {...icons[status]} />
+```
+
