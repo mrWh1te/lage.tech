@@ -3,13 +3,17 @@
 ## Advanced types
 
 ### Record
-Create a hash-map type from an union type
+Create a hash-map type using values of an union type as keys with values set to subsequent generic.
 
 Applicable React example:
 ```TypeScript
 type Statuses = "failed" | "complete";
+interface Status {
+  iconType: IconTypes
+  iconColor: IconColors
+}
 
-const icons: Record<Statuses,{ iconType: IconTypes; iconColor: IconColors }> = {
+const icons: Record<Statuses, Status> = {
   failed: {
     iconType: "warning",
     iconColor: "red"
