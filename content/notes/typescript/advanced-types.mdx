@@ -21,8 +21,12 @@ const icons: Record<Statuses, Status> = {
   complete: {
     iconType: "check",
     iconColor: "green"
-  };
+  }
+};
 
-const Status = ({status}) => <Icon {...icons[status]} />
+interface StatusProps {
+  status: Statuses
+}
+const Status = ({status}: StatusProps) => <Icon {...icons[status]} />
 ```
 
