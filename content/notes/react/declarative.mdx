@@ -1,0 +1,35 @@
+# Declarative
+
+Declarative patterns to improve readability.
+
+## Custom Hooks
+
+```typescript
+function useLoaded() {
+  const [loaded, setLoaded] = useState(false);
+  const img = useRef<HTMLImageElement>(null);
+
+  const handleLoad = () => {
+    setLoaded(true);
+  };
+
+  useEffect(() => {
+    setLoaded((prevLoaded) => img.current?.complete ?? prevLoaded);
+  }, []);
+
+  return {
+    loaded,
+    props: {
+      ref: img,
+      onLoad: handleLoad,
+    },
+  } as const;
+}
+
+function Thingy() {
+  const { loaded, props } = useLoaded();
+  const classes = classnames({ loaded });
+
+  return <img {...props} className={classes} />;
+}
+```
