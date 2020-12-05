@@ -1,0 +1,102 @@
+# JavaScript
+
+## Destructuring
+Create variables from the properties of objects
+
+```javascript
+  const bar = {
+    foo = 'foo bar'
+  }
+  const test = ['hello', 'world']
+
+  const { foo } = bar
+  const [first, second] = test
+
+  console.log(foo) // 'foo bar'
+  console.log(first + ' ' + second) // 'hello world'
+```
+
+## Spread operator
+Get the contents of an object or array for creating new objects and arrays
+
+```javascript
+  const foo = ['hello']
+  const bar = ['world']
+
+  const helloWorld = [...foo, ...bar]
+
+  console.log(helloWorld) // ['hello', 'world']
+```
+
+Can be used with Destructuring
+```javascript
+  const fruitsList = ['List Title', 'apple', 'orange', 'blueberries']
+
+  const [listTitle, ...fruits] = fruitsList
+
+  console.log(listTitle) // 'List Title'
+  console.log(first + ' ' + second) // ['apple', 'orange', 'blueberries']
+```
+
+## Arrow Functions
+These are anonymous functions without `this`, or `super`. Great for callback's.
+
+```javascript
+const foo = () => 'bar'
+
+console.log(foo()) // 'bar'
+```
+
+## Nullish Coalescing
+
+Is a logical operator `??` that returns its right-hand side value when its left-hand side is `null` or `undefined`, otherwise returns the left-hand side. Therefore, falsey values will be considered valid and returned like empty string, zero, etc.
+
+```javascript
+const left1 = '' ?? 'test'
+const left2 = 0 ?? 'test'
+
+const right1 = null ?? 'test'
+const right2 = undefined ?? 'test'
+const right3 = thisDoesNotExist?.value ?? 'test'
+
+console.log(left1) // ''
+console.log(left2) // 0
+
+console.log(right1) // 'test'
+console.log(right2) // 'test'
+console.log(right3) // 'test'
+```
+
+### Short-circuiting
+You can use nullish coalescing to conditionally run an expression. If the left-hand side expression evaluates to `null` or `undefined`, the right-hand expression will run. 
+
+Therefore, you can short-circuit the right-hand expression by returning a value that *isn't* `null` or `undefined`.
+
+```javascript
+const willShortCircuit = () => { console.log('will'); return 42; }
+const wontShortCircuit = () => { console.log('wont'); return null; }
+
+const test = () => { return 'test' }
+
+console.log( wontShortCircuit() ?? test() ) // 'wont' then 'test'
+console.log( willShortCircuit() ?? test() ) // 'will' then 42 as test() is not evaluated
+```
+
+## Optional Chaining
+You can use the optional chaining operator `?.` to read properties deep in objects that may by nullish (`null` or `undefined`). When it's nullish, it short-circuits the expression then returns `undefined`.
+
+```javascript
+const dog = {
+  color: 'yellow',
+  breed: {
+    name: 'Lab'
+  }
+}
+const dogWithOutBreed = {
+  color: 'brown'
+}
+
+console.log(dog.breed?.name) // 'Lab'
+console.log(dogWithOutBreed.breed?.name) // undefined
+
+```
