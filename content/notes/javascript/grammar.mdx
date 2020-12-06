@@ -4,38 +4,38 @@
 Create variables from the properties of objects
 
 ```javascript
-  const bar = {
-    foo = 'foo bar'
-  }
-  const test = ['hello', 'world']
+const bar = {
+  foo = 'foo bar'
+}
+const test = ['hello', 'world']
 
-  const { foo } = bar
-  const [first, second] = test
+const { foo } = bar
+const [first, second] = test
 
-  console.log(foo) // 'foo bar'
-  console.log(first + ' ' + second) // 'hello world'
+console.log(foo) // 'foo bar'
+console.log(first + ' ' + second) // 'hello world'
 ```
 
 ## Spread operator
 Get the contents of an object or array for creating new objects and arrays
 
 ```javascript
-  const foo = ['hello']
-  const bar = ['world']
+const foo = ['hello']
+const bar = ['world']
 
-  const helloWorld = [...foo, ...bar]
+const helloWorld = [...foo, ...bar]
 
-  console.log(helloWorld) // ['hello', 'world']
+console.log(helloWorld) // ['hello', 'world']
 ```
 
 Can be used with Destructuring
 ```javascript
-  const fruitsList = ['List Title', 'apple', 'orange', 'blueberries']
+const fruitsList = ['List Title', 'apple', 'orange', 'blueberries']
 
-  const [listTitle, ...fruits] = fruitsList
+const [listTitle, ...fruits] = fruitsList
 
-  console.log(listTitle) // 'List Title'
-  console.log(first + ' ' + second) // ['apple', 'orange', 'blueberries']
+console.log(listTitle) // 'List Title'
+console.log(fruits) // ['apple', 'orange', 'blueberries']
 ```
 
 ## Arrow Functions
@@ -55,12 +55,12 @@ Is a logical operator `??` that returns its right-hand side value when its left-
 const left1 = '' ?? 'test'
 const left2 = 0 ?? 'test'
 
+console.log(left1) // ''
+console.log(left2) // 0
+
 const right1 = null ?? 'test'
 const right2 = undefined ?? 'test'
 const right3 = thisDoesNotExist?.value ?? 'test'
-
-console.log(left1) // ''
-console.log(left2) // 0
 
 console.log(right1) // 'test'
 console.log(right2) // 'test'
