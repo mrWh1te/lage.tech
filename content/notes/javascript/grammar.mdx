@@ -82,6 +82,21 @@ console.log( wontShortCircuit() ?? test() ) // 'wont' then 'test'
 console.log( willShortCircuit() ?? test() ) // 'will' then 42 as test() is not evaluated
 ```
 
+### Nullish Assignment
+Assign a value to a variable, only when it's nullish (`undefined` or `null`) by using the Nullish Assigment Operator `??=`.
+
+```javascript
+let x = null
+let y = undefined
+let z = '!'
+
+x ??= 'hello '
+y ??= 'world'
+z ??= '?' // z is NOT nullish, so '?' will NOT be assigned
+
+console.log(x + y + z) // hello world!
+```
+
 ## Optional Chaining
 You can use the optional chaining operator `?.` to read properties deep in objects that may by nullish (`null` or `undefined`). When it's nullish, it short-circuits the expression then returns `undefined`.
 
