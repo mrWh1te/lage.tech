@@ -1,5 +1,33 @@
 # Linux
 
+Linux is modular. There are many choices for each part.
+
 ### Display Manager (login manager)
 
-GUI to display at the end of the boot process, in place of the default shell.
+GUI to display at the end of the boot process, in place of the default shell. It's intended to display a Login form to begin a User session.
+
+* [Simple Desktop Display Manager](https://github.com/sddm/sddm/)
+
+### Display Server
+
+> A <b>display server</b> or <i>window server</i> is a program whose primary task is to coordinate the input and output of its clients to and from the rest of the operating system, the hardware, and each other.
+> -- <i>[Wikipedia](https://en.wikipedia.org/wiki/Display_server)</i>
+
+ie.
+- [X.org Server](https://en.wikipedia.org/wiki/X.Org_Server)
+
+### Desktop Environment
+
+
+- KDE, Gnome, Xfce
+
+### Package Manager
+
+Arch Linux comes with `pacman`, to install packages such as applications, i.e.:
+```bash
+pacman -S slack
+```
+Flag:
+- -S install package
+
+[More details](https://ostechnix.com/getting-started-pacman/)

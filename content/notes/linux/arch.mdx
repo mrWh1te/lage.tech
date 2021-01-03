@@ -5,7 +5,66 @@
 
 ## Personal setup
 
-This setup focuses on my favorite applications, services, and drivers. It skips the initial Arch linux setup.
+This setup is a style of favorite applications, services, and drivers. It ignores everything related to the [initial Arch linux setup](https://wiki.archlinux.org/index.php/Installation_guide).
+
+### Manual
+Offline access to a [manual](https://www.cyberciti.biz/faq/linux-unix-creating-a-manpage/) of all your CLI tools.
+```bash
+man dwm # Manual page on DWM, ie keyboard shortcuts
+```
+> Mod1 is the alt key on the US keyboard layout
+
+[Helpful Wiki](https://wiki.archlinux.org/index.php/Man_page)
+
+### Windows Tiling Manager
+Replace (or use with) a Desktop Environment. The primary objective is automating the layout of application windows, however, many go beyond in building interactive User flows that mostly increase speed of which one interfaces a typical desktop computer. For example, use keyboard short-cuts to "tile" windows on screen to keep your hands on the keyboard.
+
+Trying out [dwm](dwm).
+
+#### Patches & other
+- launch applications, create dynamic menus [dmenu](https://wiki.archlinux.org/index.php/Dmenu)
+
+#### CLI Tools
+Given how fast shell based Windows open in [dwm](dwm), having GUI like CLI alternatives can expediate your work-flow.
+
+Trying out the following:
+- file-management [ranger](https://wiki.archlinux.org/index.php/Ranger)
+- terminal emulation [st](https://wiki.archlinux.org/index.php/St)
+- monitoring tool (hardware status, processes) [htop](https://www.cyberciti.biz/faq/how-to-install-htop-on-arch-linux/) ([read more](https://www.linuxtechi.com/htop-monitor-linux-system-processes/))
+- reading text (unix pipe in) or files [less](https://www.howtogeek.com/444233/how-to-use-the-less-command-on-linux/)
+- print computer brand [screenfetch](https://archlinux.org/packages/?name=screenfetch)
+
+### Wifi
+Arch did not include a DHCP client in the bare-install (following the Arch wiki). I ended up having most success with [dhcpcd](https://wiki.archlinux.org/index.php/Dhcpcd) to get an IP. After determining my hardware's chipset, I was able to find a driver that supported it. Also, it's possible to find the driver through the hardware's device-id. Once the wifi interface showed up on [ip link](https://wiki.archlinux.org/index.php/Network_configuration#Network_interfaces), I was able to form a wireless connection with an encrypted Wifi using [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl).
+
+Helpful links:
+- [ArchWiki: Wireless Device Driver](https://wiki.archlinux.org/index.php/Network_configuration/Wireless#Device_driver)
+- [ArchWiki: Network Configuration](https://wiki.archlinux.org/index.php/Network_configuration)
+- [ArchWiki: Broadcom wireless](https://wiki.archlinux.org/index.php/Broadcom_wireless)
+
+### Nvidia
+Trying out the [Nvidia driver](https://wiki.archlinux.org/index.php/NVIDIA) for Geforce 1060 6GB card.
+
+### Steam
+Valve officially supports Ubuntu. The [steam]() package may install with missing libraries/dependencies ([resolve with this guide](https://wiki.archlinux.org/index.php/Steam/Troubleshooting_#Finding_missing_runtime_libraries)). My setup required an additional font & 32bit lib packages.
+
+My computer streams on local Wifi to a networked Steam Link better, when running Arch, as opposed to Windows. 💪🤩
+
+Helpful links:
+- [Steam Troubleshooting](https://wiki.archlinux.org/index.php/Steam/Troubleshooting_)
+
+### Chat
+Slack has the `slack-desktop` package in the package-manager. Recommend you use `pacman` to install instead, instead of manually installing it from their website, to let `pacman` manage updates for you.
+
+Apps:
+- [Slack](https://aur.archlinux.org/packages/slack-desktop/) 
+- [Discord](https://wiki.archlinux.org/index.php/Discord)
+
+todo Zoom
+
+### Emoji's
+
+Express yourself with a font that has emoji's like [noto-fonts-emoji](https://archlinux.org/packages/extra/any/noto-fonts-emoji/) ([guide](ttps://dev.to/darksmile92/get-emojis-working-on-arch-linux-with-noto-fonts-emoji-2a9)).
 
 ### Take screenshots
 [scrot]() is a CLI tool for generating screenshots, including thumbnails i.e.
@@ -15,3 +74,11 @@ scrot -t 20 -d 5
 The file is png with a dated filename. The flags are:
 - -t Thumbnail percentage size from original i.e. 20%
 - -d Delay in seconds before taking the screenshot i.e. 5 seconds
+
+### NTFS support
+Support NTFS partitions (i.e. Windows file-systems).
+
+Install the [ntfs-3g package](https://wiki.archlinux.org/index.php/NTFS-3G). Then mount the corresponding file-system partition(s), i.e.:
+```bash
+sudo ntfs-3g /dev/sdd2 /mnt/windows
+```
