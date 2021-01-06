@@ -40,8 +40,22 @@ Comment=Custom DWM Session
 Exec=/usr/local/bin/custom-dwm-start
 ```
 
-#### Patches & other
+Don't forget to give executable permission to the bash script:
+```bash
+chmod +x /usr/local/bin/custom-dwm-start
+```
+
+#### Apps
 - launch applications, create dynamic menus [dmenu](https://wiki.archlinux.org/index.php/Dmenu)
+- set a background wallpaper [feh](https://wiki.archlinux.org/index.php/Feh)
+
+#### Patches
+[Learn how to use Patches](https://dwm.suckless.org/customisation/patches_in_git/)
+
+Trying out:
+- [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
+
+Also, I changed my Mod1 key from the left Alt key to the Super/Windows key, [following these instructions](https://dwm.suckless.org/customisation/windows_key/). Now keyboard shortcuts for Visual Studio Code (like moving multiple high-lighted lines of code up or down) can be used without change.
 
 #### CLI Tools
 Given how fast shell based Windows work in [dwm](dwm), having  CLI alternatives for GUI apps can expediate your work-flow.
@@ -88,10 +102,6 @@ todo IRC, Zoom
 ### Emoji's
 
 Express yourself with a font that has emoji's like [noto-fonts-emoji](https://archlinux.org/packages/extra/any/noto-fonts-emoji/) ([guide](ttps://dev.to/darksmile92/get-emojis-working-on-arch-linux-with-noto-fonts-emoji-2a9)).
-
-### Wallpaper / Image Viewer
-
-Currently trying out [feh](https://wiki.archlinux.org/index.php/Feh).
 
 ### Take screenshots
 [scrot]() is a CLI tool for generating screenshots, including thumbnails i.e.
