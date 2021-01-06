@@ -21,6 +21,25 @@ Replace (or use with) a Desktop Environment. The primary objective is automating
 
 Trying out [dwm](dwm).
 
+Currently, using a bash script executable, from a [Desktop Entry](https://wiki.archlinux.org/index.php/Desktop_entries), to launch `dwm` along with other things (such as `feh` for restoring the wallpaper)
+
+/usr/local/bin/custom-dwm-start
+```bash
+#!/bin/bash
+~/.fehbg &
+
+exec /usr/src/dwm/dwm
+```
+
+/usr/share/xsessions/dwm.desktop
+```
+[Desktop Entry]
+Name=DWM
+Type=Application
+Comment=Custom DWM Session
+Exec=/usr/local/bin/custom-dwm-start
+```
+
 #### Patches & other
 - launch applications, create dynamic menus [dmenu](https://wiki.archlinux.org/index.php/Dmenu)
 
@@ -69,6 +88,10 @@ todo IRC, Zoom
 ### Emoji's
 
 Express yourself with a font that has emoji's like [noto-fonts-emoji](https://archlinux.org/packages/extra/any/noto-fonts-emoji/) ([guide](ttps://dev.to/darksmile92/get-emojis-working-on-arch-linux-with-noto-fonts-emoji-2a9)).
+
+### Wallpaper / Image Viewer
+
+Currently trying out [feh](https://wiki.archlinux.org/index.php/Feh).
 
 ### Take screenshots
 [scrot]() is a CLI tool for generating screenshots, including thumbnails i.e.

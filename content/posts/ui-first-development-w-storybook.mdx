@@ -37,16 +37,40 @@ This is opposed to the UI first development approach, where teams iterate on *ju
 
 That's because, now with tools like Storybook, teams can iterate on the UI portion of their components first, and only that, until the UI/UX are satisfactory, and upon which, can have the developers write the smart business portion of the component code, once.
 
-## 2n > n+1 Development Speed
+## 2n > n+2 Development Speed
 
-n + 1 is shorter than 2n so, more often than not, this process will take less time to complete new features and fix old bugs.
+n + 1 is shorter than 2n, but doesn't represent the complete development picture for this workflow. With UI first development, using Storybook, for example, each UI component will need "stories" coded as well. Thankfully, if you're unfamiliar with it, "stories" are really simple and can even be generated (i.e. [using Nx](https://nx.dev/latest/angular/plugins/storybook/overview#auto-generate-stories)). They take less time to code than Smart or UI components. The time it takes to build a "story" is almost neligble (see this [example](https://github.com/mrWh1te/gardn/blob/master/libs/ui/src/lib/logo/logo.stories.tsx) for an UI Logo component). But, if you're new with Storybook, we can adjust our Big-O representation of this process by adding `1` to it, as if we're adding a whole other "smart" component, in terms of development work (that should cover us):
 
-Let's say it takes 4 iterations to build a new feature correctly, like a blog post viewer. Traditionally, you may write up to 2n -> 2(4) = 8 iterations of component code. If you use UI first development, it's n+1 -> (4)+1 = 5.
+<center>n + 2</center>
+
+This shortens the length of the development arch in the feedback loop. Here's a graph of n + 2 versus 2n:
+
+
+
+For example, you have a User Story to build out a new *Blog Post Viewer*. Let's say, it takes 4 iterations, in this feedback loop, to complete it with satisfactory results for all stakeholders.
+
+Traditionally, for each iteration, developers may rewrite or edit both Smart & UI component code of the new feature. To count the number of times developers work on a component's code, we plug in the amount of times the team(s) repeats the iterative process: 
+
+<center>2(n) = 2(4) = 8</center>
+
+Therefore, developers will work on component's code up-to that many times, for that single feature.
+
+This is how UI first development increases developer throughput. By revising the approach, to use UI first development, we count the number of times developers work on a component's code, by plugging in the number of team iterations:
+
+<center>n + 2 = 4 + 2 = 6</center>
+
+Realistically, by using this process, the number of times your developers need to work on component code reduces. With this process, developer throughput increases, not to mention, you now have an *amazing* resource of UI component Documentation.
+
+You can see up to 50% reduction in developer time for building out new complex features, when using this process. It can be even more valuable for teams that are exploring design ideas (UI/UX), like when building out a Style Guide as it reduces the developer work to build out demo's to discuss amongst stakeholders.
+
+If it takes about 3-4 development hours for a single leg of iteration, we're talking between 6-8 hours of development time saved, for this one feature.
 
 Therefore, the number of working hours to complete a new feature, will on average, take less time and therefore cost less, or for the same hours of cost, the throughput of work increases. Depending on how you want to look at it.
 
-In this example, you might save from 8 to 16 hours of developer time. For just one new feature.
+In this example, you might save up-to 16 hours of developer time. If each component iteration takes about 5 hours, the team could save 16 hours for just one feature.
 
-## How many features did you deliver last year?
+Typically, working on a single component takes from 1 to 6 hours, maybe 3-4 hours.
 
-If you're interested in improving your team's throughput, culture, or architecture, consider reaching out by email to <a href="mailto:lage.michael@gmail.com=Meet and Greet - Michael Lage">lage.michael@gmail.com</a> with the Subject of "Meet and Greet - Michael Lage" to be emailed a scheduling link.
+## How many features do you plan to deliver this year?
+
+If you're interested in improving your team's throughput, culture, or architecture, just reach out by email to <a href="mailto:lage.michael@gmail.com=Meet and Greet - Michael Lage">lage.michael@gmail.com</a> with the subject, "Meet and Greet - Michael Lage", and I'll send you a link to schedule a quick meeting.
