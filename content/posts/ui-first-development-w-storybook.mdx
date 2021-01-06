@@ -5,15 +5,15 @@ date: 2020-01-03
 
 # Iterative Development Loop
 
-People in tech are familiar with the classic iterative process of developing new features and fixing bugs: develop, deploy to Staging, receive feedback, then repeat.
+People in tech are familiar with the classic *iterative* process of developing new features and fixing bugs: develop code, deploy to a testing environment (i.e. Staging), collect feedback, then repeat.
 
 <center>
     <img src="/iterative-development-loop.png" alt="Iterative Development Loop" />
 </center>
 
-This process has been proven thorough enough that it usually (if not consistently) delivers satisfactory results.
+This process has been proven thorough enough that it consistently delivers satisfactory results.
 
-Now, with the emergence of powerful Documentation tools, from [Docz](https://www.docz.site/) to [Storybook](https://storybook.js.org/), comes an opportunity for frontend teams to shorten the development leg of this loop.
+Now, with the emergence of powerful Documentation tools, from [Docz](https://www.docz.site/) to [Storybook](https://storybook.js.org/), comes an opportunity for frontend teams to revise this process, to shorten the loop, by reducing the length of the development leg.
 
 # UI First Development
 
@@ -31,7 +31,7 @@ Traditionally, the develop portion of the iterative process has frontend develop
 
 For every feature or bug, you will develop it 2n times, because you may potentially rewrite the smart layer and UI layer on each iteration.
 
-This is opposed to the UI first development approach, that reduces the developer's focus to *just* the UI layer. We can represent the number of iterations in code layers with such:
+This is opposed to the UI first development approach, where teams iterate on *just* the UI components before writing a single Smart component. We can represent the number of iterations in code layers with such:
 
 <center>n + 1</center>
 
@@ -39,7 +39,11 @@ That's because, now with tools like Storybook, teams can iterate on the UI porti
 
 ## 2n > n+1 Development Speed
 
-Traditionally you build a feature, deploy to Staging for review, than iterate as many times as needed before merging in.
+n + 1 is shorter than 2n so, more often than not, this process will take less time to complete new features and fix old bugs.
+
+Let's say it takes 4 iterations to build a new feature correctly, like a blog post viewer. Traditionally, you may write up to 2n -> 2(4) = 8 iterations of component code. If you use UI first development, it's n+1 -> (4)+1 = 5.
+
+Therefore, the number of working hours to complete a new feature, will on average, take less time and therefore cost less, or for the same hours of cost, the throughput of work increases. Depending on how you want to look at it.
 
 
 
@@ -48,12 +52,7 @@ Traditionally you build a feature, deploy to Staging for review, than iterate as
 
 
 
-
-
-
-
-
-
+# Probably delete the rest of this.... to focus on just 2n > n+1
 ## Interactive Discussions
 
 By using Storybook with your Pull-Requests, you have a central interactive authority on the UI that anyone can access such as designers, business analysts, PMs, and other stake holders.
