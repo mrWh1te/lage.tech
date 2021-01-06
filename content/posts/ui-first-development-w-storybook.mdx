@@ -1,0 +1,88 @@
+---
+title: Increase development throughput with UI first development
+date: 2020-01-03
+---
+
+# Iterative Development Loop
+
+People in tech are familiar with the classic iterative process of developing new features and fixing bugs: develop, deploy to Staging, receive feedback, then repeat.
+
+<center>
+    <img src="/iterative-development-loop.png" alt="Iterative Development Loop" />
+</center>
+
+This process has been proven thorough enough that it usually (if not consistently) delivers satisfactory results.
+
+Now, with the emergence of powerful Documentation tools, from [Docz](https://www.docz.site/) to [Storybook](https://storybook.js.org/), comes an opportunity for frontend teams to shorten the development leg of this loop.
+
+# UI First Development
+
+Traditionally, developers build out the complete feature for review on each iteration. If you're using React or Angular, you're probably splitting components into Smart and UI components like such:
+
+<center>
+    <img src="/iterative-development-smart-ui-leg-2n.png" alt="Traditional Development Leg consisting of two components to iterate on each time" />
+</center>
+
+The UI first development approach has developers focusing on the UI layer of component code first, iterating on that portion of the frontend code first, until the UX/UI is satisfactory from all stake holders, before ever writing a single line of business logic, in the smart layer of component code.
+
+Traditionally, the develop portion of the iterative process has frontend developers building out both the smart business logic and UI code. That's two separate layers of code. To calculate the number of layers of code being iterated per feature or bug, we can use Big-O notation and attribute it as such:
+
+<center>2n</center>
+
+For every feature or bug, you will develop it 2n times, because you may potentially rewrite the smart layer and UI layer on each iteration.
+
+This is opposed to the UI first development approach, that reduces the developer's focus to *just* the UI layer. We can represent the number of iterations in code layers with such:
+
+<center>n + 1</center>
+
+That's because, now with tools like Storybook, teams can iterate on the UI portion of their components first, and only that, until the UI/UX are satisfactory, and upon which, can have the developers write the smart business portion of the component code, once.
+
+## 2n > n+1 Development Speed
+
+Traditionally you build a feature, deploy to Staging for review, than iterate as many times as needed before merging in.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Interactive Discussions
+
+By using Storybook with your Pull-Requests, you have a central interactive authority on the UI that anyone can access such as designers, business analysts, PMs, and other stake holders.
+
+Through the use of Controls, formerly known as Knobs, people can interact with the UI in deeper ways to test all potential edge-cases given the various input it accepts. It's akin to visual testing and works great with unit-tests when using Component Story Format ([CSF](https://storybook.js.org/docs/react/api/csf)). See example code here:
+
+***
+const x = '54';
+
+// gardn ui lib component code
+// story code
+// unit-tests using story CSF
+
+***
+
+Collaborate on testing the UI for various edge-cases by expirmenting with the component's input values.
+
+## Continous Deployment
+Since Storybook, itself, is a statically generated web application, it only takes a few steps to expand one's CD pipe-lines to include it during regular deploys or create new pipe-lines to deploy the app.
+
+Learn more about [building & publishing Storybook](https://storybook.js.org/docs/react/workflows/publish-storybook#build-storybook-as-a-static-web-application).
+
+> A short path to integrating Storybook into the Pull-Request work-flow, was to include the statically generated SPA with the existing continously deployed pipeline app (ie React or Angular), by building the Storybook app in a new sub-directory, such as `/storybook`, in the built `/dist` that is used for the app's deployment.
+
+If you're interested in using a 3rd party service to handle your Storybook deployments, check out [Chromatic](https://www.chromatic.com/).
+
+# Atomic Design
+Building a reusable component library, and showing it off, has become even easier thanks to Storybook.
+
+Build out "atoms" in Storybook like Buttons, Charts, Headers, etc. to use in the "molecules" of your App like a `ProductDetails` component.
+
+You can even separate your Storybook's. One for the reusable component library, than one for each team's app for their app's molecules.
