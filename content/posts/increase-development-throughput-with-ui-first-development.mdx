@@ -1,43 +1,54 @@
 ---
-title: Increase development throughput with UI first development
+title: Increase FE development throughput with UI first
 date: 2020-01-03
 ---
 
-# Iterative Development Loop
+# Development Feedback Loop
 
-People in tech are familiar with the classic *iterative* process of developing new features and fixing bugs: develop code, deploy to a testing environment (i.e. Staging), collect feedback, then repeat.
+Here is a high-level view of the proven *iterative* process of developing new features and fixing bugs in applications: 
 
 <center>
     <img src="/iterative-development-loop.png" alt="Iterative Development Loop" />
 </center>
 
-This process has been proven thorough enough that it consistently delivers satisfactory results.
+1. Develop code based on an user story, requirements, design assets
+2. Deploy code changes to testing environment (i.e. Staging)
+3. Collect feedback from stakeholders (i.e. new designs, scope revisions)
+4. Repeat until satisfied
 
-Now, with the emergence of powerful Documentation tools, from [Docz](https://www.docz.site/) to [Storybook](https://storybook.js.org/), comes an opportunity for frontend teams to revise this process, to shorten the loop, by reducing the length of the development leg.
+# O( 2n )
 
-# UI First Development
-
-Traditionally, developers build out the complete feature for review on each iteration. If you're using React or Angular, you're probably splitting components into Smart and UI components like such:
+From the Frontend point of view, most application features' code has two distinct types: 
+1. Smart business logic
+2. UI
 
 <center>
     <img src="/iterative-development-smart-ui-leg-2n.png" alt="Traditional Development Leg consisting of two components to iterate on each time" />
 </center>
 
-The UI first development approach has developers focusing on the UI layer of component code first, iterating on that portion of the frontend code first, until the UX/UI is satisfactory from all stake holders, before ever writing a single line of business logic, in the smart layer of component code.
+In the Development Feedback Loop of new features, each pass through the Development leg, has developers writing two distinct types of code that handle different problems, with their own solutions such as styling UI with CSS versus sorting incoming data from an API response.
 
-Traditionally, the develop portion of the iterative process has frontend developers building out both the smart business logic and UI code. That's two separate layers of code. To calculate the number of layers of code being iterated per feature or bug, we can use Big-O notation and attribute it as such:
+We can think of these two camps of code as two different chores, a developer must take time to deal with, on each pass of the Development Feedback Loop. We can count the upper limit of code types (i.e. components) being iterated per feature by borrowing [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation):
 
-<center>2n</center>
+<center>O( 2n )</center>
 
-For every feature or bug, you will develop it 2n times, because you may potentially rewrite the smart layer and UI layer on each iteration.
+For every feature or bug, a FE team develops, it may be up to 2n times of component code iterations to complete the feature.
 
-This is opposed to the UI first development approach, where teams iterate on *just* the UI components before writing a single Smart component. We can represent the number of iterations in code layers with such:
+For example, if the whole team (Product, Design, Development, BA's, etc) repeats the Development Feedback Loop together, *four times*, to complete a feature, FE developers may rewrite components up to *eight times*. That is up to four times rewriting a smart component, and up to four times rewriting an UI component. If each component rewrite takes 1-3 hours, it will take 8-24 hours of developer time to rewrite the components to complete one feature.
 
-<center>n + 1</center>
+We can shorten the developer time by refining what is iterated on on each leg of the Development Feedback Loop.
 
-That's because, now with tools like Storybook, teams can iterate on the UI portion of their components first, and only that, until the UI/UX are satisfactory, and upon which, can have the developers write the smart business portion of the component code, once.
+## UI first Development
 
-## 2n > n+2 Development Speed
+UI first development leverages tools such as Docz and Storybook, to not only provide a more collaborative experience for all stakeholders, but increase the throughput value of developers' time by reducing the amount of code developers rewrite (refactor).
+
+These tools enable FE teams to iterate on *only* the UI component of a new feature, in each pass of the Development Feedback Loop. Once the UI is satisfactory, developers can write the Smart component, for the feature, once. Therefore, we can count the upper limit of code types (i.e. components) being iterated per feature by borrowing [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation)
+
+<center>n + 2</center>
+
+It's *one* time to write the Smart component. It's (mostly) *one* time to write the "Story" or Docz markdown page, to setup the UI iterative development for the new feature. Then it's *n* times of repeating the Development Feedback Loop in rewriting *only* the UI component.
+
+## 2n > n + 2 Development Speed
 
 n + 1 is shorter than 2n, but doesn't represent the complete development picture for this workflow. With UI first development, using Storybook, for example, each UI component will need "stories" coded as well. Thankfully, if you're unfamiliar with it, "stories" are really simple and can even be generated (i.e. [using Nx](https://nx.dev/latest/angular/plugins/storybook/overview#auto-generate-stories)). They take less time to code than Smart or UI components. The time it takes to build a "story" is almost neligble (see this [example](https://github.com/mrWh1te/gardn/blob/master/libs/ui/src/lib/logo/logo.stories.tsx) for an UI Logo component). But, if you're new with Storybook, we can adjust our Big-O representation of this process by adding `1` to it, as if we're adding a whole other "smart" component, in terms of development work (that should cover us):
 
