@@ -1,17 +1,17 @@
 module.exports = {
   plugins: [
+    // with gatsby-plugin-theme-ui, the last theme in the config
+    // will override the theme-ui context from other themes
+    { resolve: `gatsby-theme-blog` },
+    { resolve: `gatsby-plugin-typescript` },
+    { resolve: `gatsby-plugin-emotion`},
     {
       resolve: `gatsby-theme-notes`,
       options: {
         mdx: false,
         basePath: `/notes`,
       },
-    },
-    // with gatsby-plugin-theme-ui, the last theme in the config
-    // will override the theme-ui context from other themes
-    { resolve: `gatsby-theme-blog` },
-    { resolve: `gatsby-plugin-typescript` },
-    { resolve: `gatsby-plugin-emotion`}
+    }
   ],
   siteMetadata: {
     title: `Lage.tech`,
