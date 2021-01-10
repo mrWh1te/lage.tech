@@ -19,10 +19,51 @@ man dwm # Manual page on DWM, ie keyboard shortcuts
 ### Windows Tiling Manager
 Replace (or use with) a Desktop Environment. The primary objective is automating the layout of application windows, however, many go beyond in building interactive User flows that mostly increase speed of which one interfaces a typical desktop computer. For example, use keyboard short-cuts to "tile" windows on screen to keep your hands on the keyboard.
 
-Trying out [dwm](dwm).
+Trying out [dwm](dwm). Recommend you install it manually by building it locally. I've had more success with patches when cloning 6.2 specifically, than just using the latest Master i.e.
+```
+git clone -b 6.2 git://git.suckless.org/dwm
+```
 
-#### Patches & other
+Currently, using a bash script executable, from a [Desktop Entry](https://wiki.archlinux.org/index.php/Desktop_entries), to launch `dwm` along with other things (such as `feh` for restoring the wallpaper)
+
+/usr/local/bin/custom-dwm-start
+```bash
+#!/bin/bash
+~/.fehbg &
+
+exec /usr/src/dwm/dwm
+```
+
+/usr/share/xsessions/dwm.desktop
+```
+[Desktop Entry]
+Name=DWM
+Type=Application
+Comment=Custom DWM Session
+Exec=/usr/local/bin/custom-dwm-start
+```
+
+Don't forget to give executable permission to the bash script:
+```bash
+chmod +x /usr/local/bin/custom-dwm-start
+```
+
+#### Apps
 - launch applications, create dynamic menus [dmenu](https://wiki.archlinux.org/index.php/Dmenu)
+- set a background wallpaper [feh](https://wiki.archlinux.org/index.php/Feh)
+
+#### Patches
+[Learn how to use Patches](https://dwm.suckless.org/customisation/patches_in_git/)
+
+Trying out:
+- [pertag](https://dwm.suckless.org/patches/pertag/) unique layout per tag & more
+- [ru_gaps](https://dwm.suckless.org/patches/ru_gaps/) with special patch for [Fibonacci](https://dwm.suckless.org/patches/fibonacci/) layouts
+    - I had to custom apply the patch by following the main Fibonacci patch notes but using the ru_gaps patch code
+
+Also, changed the Mod1 key from the left Alt key to the Super/Windows key, [following these instructions](https://dwm.suckless.org/customisation/windows_key/). Now keyboard shortcuts for Visual Studio Code (like moving multiple high-lighted lines of code up or down) can be used without change.
+
+Tried:
+- [fullgaps](https://dwm.suckless.org/patches/fullgaps/) gaps between windows (replaced with ru_gaps for Fibonacci layout support)
 
 #### CLI Tools
 Given how fast shell based Windows work in [dwm](dwm), having  CLI alternatives for GUI apps can expediate your work-flow.
