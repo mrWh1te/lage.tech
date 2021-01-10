@@ -48,7 +48,7 @@ These tools enable FE teams to iterate on *only* the UI component of a new featu
 
 It's *one* time to write the Smart component. It's (mostly) *one* time to write the "Story" or Docz markdown page, to setup the UI iterative development for the new feature. Then it's *n* times of repeating the Development Feedback Loop in rewriting *only* the UI component.
 
-## 2n > n + 2 Development Speed
+## Compare Lengths: 2n > n + 2
 
 n + 1 is shorter than 2n, but doesn't represent the complete development picture for this workflow. With UI first development, using Storybook, for example, each UI component will need "stories" coded as well. Thankfully, if you're unfamiliar with it, "stories" are really simple and can even be generated (i.e. [using Nx](https://nx.dev/latest/angular/plugins/storybook/overview#auto-generate-stories)). They take less time to code than Smart or UI components. The time it takes to build a "story" is almost neligble (see this [example](https://github.com/mrWh1te/gardn/blob/master/libs/ui/src/lib/logo/logo.stories.tsx) for an UI Logo component). But, if you're new with Storybook, we can adjust our Big-O representation of this process by adding `1` to it, as if we're adding a whole other "smart" component, in terms of development work (that should cover us):
 
