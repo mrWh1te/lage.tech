@@ -3,12 +3,10 @@ title: Increase FE development throughput with UI first
 date: 2020-01-03
 ---
 
-# Development Feedback Loop
-
-Here is a high-level view of the proven *iterative* process of developing new features and fixing bugs in applications: 
+The Development Feedback Loop is a proven *iterative* process for developing new features and fixing hard-to-describe bugs:
 
 <center>
-    <img src="/iterative-development-loop.png" alt="Iterative Development Loop" />
+    <img src="/iterative-development-loop.png" alt="Development Feedback Loop" />
 </center>
 
 1. Develop code based on an user story, requirements, design assets
@@ -59,7 +57,7 @@ Once the UI component is complete, the developers write the Smart component, **o
 
 Therefore, we can describe the upper limit of component (re)writes, per feature, by borrowing [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation):
 
-<center>n + 2</center>
+<center>O( n + 2 )</center>
 
 It's *one* time to setup the Story or Docz markdown page (almost negligible), for the UI component. It's *n* times of repeating the Development Feedback Loop in rewriting, just, the UI component. Finally, it's *one* time to write the Smart component. That is where is the time is saved, by reducing the amount of times developers may rewrite smart components.
 
@@ -89,4 +87,4 @@ By iterating only on the UI, the number of times frontend developers need to rew
 
 ## How many features do you plan to deliver?
 
-If you're interested in improving your team's throughput, culture, or architecture, just reach out by email to <a href="mailto:lage.michael@gmail.com=Meet and Greet">lage.michael@gmail.com</a> with the subject, "Meet and Greet", and I'll send you a link to schedule a quick meeting.
+If you're interested in improving your team's throughput, culture, architecture; reach out to schedule a Meet & Greet by emailing <a href="mailto:lage.michael@gmail.com=Meet and Greet">lage.michael@gmail.com</a> with the subject, "Meet and Greet". I'll send you a scheduling link.
