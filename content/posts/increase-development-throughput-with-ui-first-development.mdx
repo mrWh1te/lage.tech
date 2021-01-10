@@ -59,28 +59,29 @@ Therefore, we can describe the upper limit of component (re)writes, per feature,
 
 It's *one* time to setup the Story or Docz markdown page (almost negligible), for the UI component. It's *n* times of repeating the Development Feedback Loop in rewriting, just, the UI component. Finally, it's *one* time to write the Smart component. That is where is the time is saved, by reducing the amount of times developers may rewrite smart components.
 
-## Compare Lengths: 2n > n + 2
+## Comparing 2n, n + 2
 
-n + 2 is shorter than 2n.. 
+n + 2 is shorter than 2n, except for when the feedback loop repeats only once. The moment the feedback sends the developers to rewrite code, it's the beginning of the second loop, where the development times are equal, but the value is more. 
 
-Here's a graph of n + 2 versus 2n:
+Here's a graph of n + 2 (UI first with UI documentation) versus 2n (traditional without UI documentation):
+
 <center>
-    <img src="/graph_2n_versus_n+2.png" alt="Graph of f(n)=2n and f(n)=n+2" />
+    <img src="/graph_2n_versus_n+2.png" alt="Graph of f(n)=2n and f(n)=n+2" style="border: 1px solid black" />
 </center>
 
-For example, you have a User Story to build out a new *Blog Post Viewer*. It will take four iterations, in the feedback loop, to complete it to satisfaction for all stakeholders.
+For example, there is an User Story to build out a new *Blog Post Viewer*. This particular story ends up taking a team four full iterations, in the feedback loop.
 
-Traditionally, for each iteration, FE developers might rewrite or edit both Smart & UI component code of the new feature. To count the number of times developers work on a component's code, we plug in the amount of times the team(s) repeats the iterative process: 
+Traditionally, for each iteration, the frontend developers might rewrite both Smart & UI components code of the Blog Post Viewer. To count the number of times developers work on a component's code, we plug in the amount of times the team(s) repeats the iterative process: 
 
 <center>2(n) = 2(4) = 8</center>
 
-Therefore, developers will work on component's code up-to that many times, for that single feature.
+Therefore, frontend developers will work on component's code up-to eight times, for that single feature.
 
-This is how UI first development increases developer throughput. By revising the approach, to use UI first development, we count the number of times developers work on a component's code, by plugging in the number of team iterations:
+This is opposed to UI first development:
 
 <center>n + 2 = 4 + 2 = 6</center>
 
-By iterating on the UI only, the number of times your developers need to rewrite component code reduces. With this process, developer throughput increases, not to mention, you now have an *amazing* resource for UI collaboration and component documentation.
+By iterating only on the UI, the number of times frontend developers need to rewrite components reduces. With this process, developer throughput increases by reducing the time it takes to iterate on complex features and by providing an amazing UI documentation tool. But, perhaps most importantly of all, this documentation tool and process refines the focus in the collaborative spirit of application development, which manages the complexity by reducing what's handled at a time.
 
 ## How many features do you plan to deliver?
 
