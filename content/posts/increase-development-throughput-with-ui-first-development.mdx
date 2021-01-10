@@ -3,20 +3,20 @@ title: Increase FE development throughput with UI first
 date: 2020-01-03
 ---
 
-The Development Feedback Loop is a proven *iterative* process for developing new features and fixing hard-to-describe bugs:
+The Development Feedback Loop is a proven *iterative* process for developing new features and fixing hard-to-describe bugs. From a high-level, it follows:
 
 <center>
     <img src="/iterative-development-loop.png" alt="Development Feedback Loop" />
 </center>
 
-1. Develop code based on an user story, requirements, design assets
+1. Develop code based on a feature, user story, requirements, design assets
 2. Deploy code changes to testing environment (i.e. Staging)
 3. Collect feedback from stakeholders (i.e. new designs, scope revisions)
-4. Repeat until satisfied
+4. Repeat until complete
 
 # O( 2n )
 
-From the Frontend point of view, most complex application features' code is made of at least two distinct components:
+From the frontend developer's point of view, most feature code is split into two distinct components:
 
 <center>
     <img src="/iterative-development-smart-ui-leg-2n.png" alt="Traditional Development Leg consisting of two components to iterate on each time" />
@@ -25,65 +25,67 @@ From the Frontend point of view, most complex application features' code is made
 1. Smart / business logic
 2. UI
 
-In the Development Feedback Loop, each pass through the Development leg, has developers rewriting two components that handle different problems such as styling UI with CSS or sorting incoming data from an API response.
-
-We can think of these two camps of code as two different chores, requiring two different trains of thought, a developer must take time to deal with, for each pass of the Development Feedback Loop.
-
-We can describe the upper limit of component (re)writes, per feature, by borrowing [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation):
+We can estimate the number of times a component is rewritten, based on an application's feature architecture. In this case, we can describe the upper limit of times components are rewritten, per feature, by borrowing [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation):
 
 <center>O( 2n )</center>
 
-For every feature, a FE team develops, they may rewrite component code up to 2n for the number of feedback loop iterations.
+For every feature, a FE team develops, the FE developers may rewrite components up to 2n, when is is the number of full iterations in the feedback loop.
 
-For example, a whole team (Product, Design, Development, BA's, etc) completes a new feature after iterating *four times*. During which, FE developers may rewrite components' code up to *eight times*. That is up to four times rewriting a smart component, and up to four times rewriting an UI component.
+For example, a whole team (Product, Design, Development, BA's, etc) completes a new feature after iterating together, *four times*. During which, FE developers may rewrite components' code up to *eight times*, for this single feature. That is up to four times rewriting a smart component, and up to four times rewriting an UI component.
 
-If each component rewrite takes 1-3 hours, it will take 8-24 hours of developer time to rewrite the components to complete one feature.
+If each component (re)write takes 1-3 hours, it will take 8-24 hours of developer time to complete the feature.
 
-We can do better, by refining what the team iterates on.
+We can improve this, by refining what the team iterates on.
 
 ## UI first Development
 
-UI first development leverages documentation tools such as [Docz](https://www.docz.site/) or [Storybook](https://storybook.js.org/), to not only provide a more collaborative experience for all stakeholders, but to increase the throughput of developers' time, by reducing the amount of code developers rewrite during the iterative process of the feedback loop.
+UI first development leaves out the Smart component until the very end of the iterative cycle, to reduce the number of times it's written, to one. By leveraging documentation tools such as [Docz](https://www.docz.site/) or [Storybook](https://storybook.js.org/), team's create collaborative, central experience for all stakeholders, while giving themselves a tool to increase the throughput of their time, by reducing the amount of code developers rewrite, to build new features and build valuable UI documentation.
 
 <center>
     <img src="/ui-first-development-loop.png" alt="UI 1st Development loops on the UI only then does the smart, business logic once" />
 </center>
 
-First, developers setup a new feature's UI component, **once**, inside the team's documentation tool. It can look as simple as this [real example](https://github.com/mrWh1te/gardn/blob/master/libs/ui/src/lib/logo/logo.stories.tsx), or even be partially generated, depending on your setup (i.e. [Nx](https://nx.dev/latest/angular/plugins/storybook/overview#auto-generate-stories)).
+When developers start on a new feature, they first setup a new UI component, **once**, inside the team's documentation tool. It can look as simple as this creating a [story that returns a Logo component](https://github.com/mrWh1te/gardn/blob/master/libs/ui/src/lib/logo/logo.stories.tsx). This step can partially be generated, depending on your setup (i.e. [Nx](https://nx.dev/latest/angular/plugins/storybook/overview#auto-generate-stories)).
 
-Then the developer builds out the UI component inside the documentation tool, to deploy the tool for collecting feedback with all stakeholders. Together, the team focuses on the UI component first, before getting into the weeds of the smart, business logic.
+Then the developers iterate on the UI component, first, inside the documentation tool, to deploy for feedback with all stakeholders. The team, can asynchronously, visit the documentation tool, interact with it, to provide feedback, before ever getting into the weeds of the smart, business logic.
 
-Once the UI component is complete, the developers write the Smart component, **once**.
+Once the UI is complete, the developers write the Smart component, **once**.
 
-Therefore, we can describe the upper limit of component (re)writes, per feature, by borrowing [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation):
+Therefore, we can describe the upper limit of times components are rewritten, per feature, as such:
 
 <center>O( n + 2 )</center>
 
-It's *one* time to setup the Story or Docz markdown page (almost negligible), for the UI component. It's *n* times of repeating the Development Feedback Loop in rewriting, just, the UI component. Finally, it's *one* time to write the Smart component. That is where is the time is saved, by reducing the amount of times developers may rewrite smart components.
+*One* time to setup the Story or Docz markdown page (almost negligible). It's *n* times of rewriting the UI component during the iterative Development Feedback Loop. Finally, it's *one* time to write the Smart component for the set UI. That is where is the time is saved, by reducing the potential number of times developers might rewrite the smart components.
 
 ## Comparing 2n, n + 2
 
-n + 2 is shorter than 2n, except for when the feedback loop repeats only once. The moment the feedback sends the developers to rewrite code, it's the beginning of the second loop, where the development times are equal, but the value is more. 
+O( n + 2 ) is shorter than O( 2n ), except for when features are iterated twice or less. This process of development may not be worth the cost, for small projects, things just starting. 
 
-Here's a graph of n + 2 (UI first with UI documentation) versus 2n (traditional without UI documentation):
+However, if the project will scale with more stakeholders, the iterative loop will grow, and in that, UI first development will save developer time and provide useful UI documentation.
+
+Here's a graph of UI first development (n + 2) and original development (2n):
 
 <center>
     <img src="/graph_2n_versus_n+2.png" alt="Graph of f(n)=2n and f(n)=n+2" style="border: 1px solid black" />
 </center>
 
-For example, there is an User Story to build out a new *Blog Post Viewer*. This particular story ends up taking a team four full iterations, in the feedback loop.
+As you see, the more complex the feature, the more exploratory the phase of development, the cheaper and more valuable it becomes, to iterate on the UI until completion, before ever considering the end business logic. The UI, after all, sets requirements for the business services to serve.
 
-Traditionally, for each iteration, the frontend developers might rewrite both Smart & UI components code of the Blog Post Viewer. To count the number of times developers work on a component's code, we plug in the amount of times the team(s) repeats the iterative process: 
+For example, there is an User Story to build out a new *Blog Post Viewer*. This particular story ends up taking a team, four full iterations, to complete. The team's PM goes back with design and analytics to consider the most important sorting features to be included in this section of the web app.
 
-<center>2(n) = 2(4) = 8</center>
+Originally, for each iteration, the frontend developers rewrite both Smart & UI components for this experimental *Blog Post Viewer*. To count the number of times developers work on components, we plug in the amount of times the team iterates on the feature: 
 
-Therefore, frontend developers will work on component's code up-to eight times, for that single feature.
+<center>O( 2n ) = 2*4 = 8</center>
 
-This is opposed to UI first development:
+Therefore, frontend developers have written component code up-to eight times, for this feature.
 
-<center>n + 2 = 4 + 2 = 6</center>
+This is opposed to UI first development, where the developers iterate only on the UI, reducing the number of component rewrites to complete the feature:
 
-By iterating only on the UI, the number of times frontend developers need to rewrite components reduces. With this process, developer throughput increases by reducing the time it takes to iterate on complex features and by providing an amazing UI documentation tool. But, perhaps most importantly of all, this documentation tool and process refines the focus in the collaborative spirit of application development, which manages the complexity by reducing what's handled at a time.
+<center>O( n + 2 ) = 4 + 2 = 6</center>
+
+By iterating only on the UI, the number of times frontend developers need to rewrite components reduces!
+
+This process increases FE developer throughput by reducing the time it takes to iterate on complex features while providing amazing UI documentation. But, perhaps most importantly of all, this documentation tool and process, refines the focus of the team's collaborative spirit, in building new features. It's a way to manage complexity, therefore, manage the risk of handling too much during a single sprint.
 
 ## How many features do you plan to deliver?
 
