@@ -27,7 +27,7 @@ Trying out [dwm](dwm). Recommend you install it manually by building it locally.
 git clone -b 6.2 git://git.suckless.org/dwm
 ```
 
-Currently, using a bash script executable, from a [Desktop Entry](https://wiki.archlinux.org/index.php/Desktop_entries), to launch `dwm` along with other things (such as `feh` for restoring the wallpaper)
+Currently, using a bash script executable, from a [Desktop Entry](https://wiki.archlinux.org/index.php/Desktop_entries), to launch `dwm` along with other things (such as [feh](https://wiki.archlinux.org/index.php/Feh) for restoring the wallpaper)
 
 /usr/local/bin/custom-dwm-start
 ```bash
@@ -38,7 +38,7 @@ exec /usr/src/dwm/dwm
 ```
 
 /usr/share/xsessions/dwm.desktop
-```
+```q
 [Desktop Entry]
 Name=DWM
 Type=Application
@@ -146,3 +146,6 @@ Install the [ntfs-3g package](https://wiki.archlinux.org/index.php/NTFS-3G). The
 ```bash
 sudo ntfs-3g /dev/sdd2 /mnt/windows
 ```
+
+### TODO
+- [System backup](https://wiki.archlinux.org/index.php/System_backup)
