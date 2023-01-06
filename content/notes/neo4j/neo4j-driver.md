@@ -1,6 +1,6 @@
 # Neo4j
 
-The Webb API interfaces a graphing database called [Neo4j](https://neo4j.com/). It's the brain 🧠 of the Voyager project.
+One of my closed-source projects has an API called Webb (after the [James Webb Space Telescope](https://en.wikipedia.org/wiki/James_Webb_Space_Telescope)) that interfaces a graphing database called [Neo4j](https://neo4j.com/). It's the brain 🧠 of the project.
 
 Unlock the potential by relating data, as different as they may be, by drawing relationships between them using [cypher](https://neo4j.com/developer/cypher/).
 
@@ -10,7 +10,7 @@ When it comes to interfacing in NodeJS, use the [neo4j-driver](https://github.co
 
 ## Transactions
 
-Queries are performed in [[Transactions](https://neo4j.com/docs/cypher-manual/current/introduction/transactions/).
+Queries are performed in [Transactions](https://neo4j.com/docs/cypher-manual/current/introduction/transactions/).
 
 The [neo4j-driver](https://github.com/neo4j/neo4j-javascript-driver#readme) package's sessions support 3 types of transactions.
 
@@ -48,8 +48,8 @@ rxSession.executeRead((tx) =>
     )
     .records() // returns RxJS Observable
     .pipe(
-      last(), // make sure query completed
       map((record) => record.get('name')),
+      toArray(), // wait for query completion
       catchError((e) => throwError(() => e))
     )
 );
