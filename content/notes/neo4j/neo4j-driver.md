@@ -2,11 +2,11 @@
 
 One of my closed-source projects has an API called Webb (after the [James Webb Space Telescope](https://en.wikipedia.org/wiki/James_Webb_Space_Telescope)) that interfaces a graphing database called [Neo4j](https://neo4j.com/). It's the brain 🧠 of the project.
 
-Unlock the potential by relating data, as different as they may be, by drawing relationships between them using [cypher](https://neo4j.com/developer/cypher/).
-
-Voyager publishes the Neo4j browser locally, so any User can expirement directly with their data, on their hunt for patterns.
+Unlock more value from your data by freely relating it. As different as your models may be, Neo4J makes it easy to associate them by drawing relationships between them using [cypher](https://neo4j.com/developer/cypher/).
 
 When it comes to interfacing in NodeJS, use the [neo4j-driver](https://github.com/neo4j/neo4j-javascript-driver#readme).
+
+The following notes focus on the reactive approach using [RxJS](https://rxjs.dev/) and [Reactive Sessions](https://github.com/neo4j/neo4j-javascript-driver#reactive-session).
 
 ## Transactions
 
