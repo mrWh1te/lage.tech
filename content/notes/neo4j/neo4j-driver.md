@@ -75,7 +75,7 @@ rxSession.executeWrite((tx) =>
 
 ### Close
 
-It's important to close a transaction's session once the session's query has completed:
+It's important to close a transaction's session after the transaction's query has completed:
 
 ```typescript
 return concat(
